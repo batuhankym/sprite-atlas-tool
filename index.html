@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sprite Atlas Tool - Pack and unpack sprite atlases in your browser">
+    <title>Sprite Atlas Tool</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Sprite Atlas Tool</h1>
+            <div class="mode-toggle">
+                <button id="mode-pack" class="mode-btn active">PACK</button>
+                <button id="mode-unpack" class="mode-btn">UNPACK</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel: File Selection -->
+            <section class="panel file-panel">
+                <h2>Files</h2>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <span class="drop-zone-text">Drop sprite images here or click to select</span>
+                    <input type="file" id="file-input" multiple accept="image/*" hidden>
+                </div>
+
+                <div class="file-list-header">
+                    <span>Loaded Files</span>
+                    <button id="clear-files-btn" class="btn-small">Clear</button>
+                </div>
+                <div id="file-list" class="file-list">
+                    <div class="file-list-empty">No files loaded</div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Settings -->
+            <section id="settings-panel" class="panel settings-panel">
+                <h2>Settings</h2>
+                
+                <div class="setting-group">
+                    <label for="padding-input">Padding (px)</label>
+                    <input type="number" id="padding-input" min="0" max="32" value="1">
+                </div>
+
+                <div class="setting-group">
+                    <label for="max-size-select">Max Atlas Size</label>
+                    <select id="max-size-select">
+                        <option value="256">256</option>
+                        <option value="512">512</option>
+                        <option value="1024" selected>1024</option>
+                        <option value="2048">2048</option>
+                        <option value="4096">4096</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="power-of-two">
+                        <span>Power of Two</span>
+                    </label>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Area: Preview & Actions -->
+        <section class="bottom-area">
+            <!-- Preview Canvas -->
+            <div class="preview-container">
+                <h2>Preview</h2>
+                <canvas id="preview-canvas" width="600" height="400"></canvas>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button id="generate-btn" class="btn-primary">Generate Atlas</button>
+                <button id="download-atlas-btn" class="btn-secondary">Download PNG</button>
+                <button id="download-json-btn" class="btn-secondary">Download JSON</button>
+                <button id="download-all-sprites-btn" class="btn-secondary" style="display: none;">Download All Sprites</button>
+            </div>
+
+            <!-- Log Panel -->
+            <div class="log-container">
+                <h2>Log</h2>
+                <div id="log-panel" class="log-panel"></div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
