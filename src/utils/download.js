@@ -10,13 +10,20 @@
  */
 export function downloadBlob(blob, filename) {
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    // Delay URL revocation to allow browser to read the blob
+    // Immediate revocation causes GUID-style filenames on some browsers
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+    }, 100);
 }
 
 /**

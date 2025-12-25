@@ -312,7 +312,7 @@ function handleDownloadJson() {
         return;
     }
 
-    downloadJSON(metadata, 'atlas.json');
+    downloadJSON(metadata, 'metadata.json');
     logInfo('Metadata JSON downloaded.');
 }
 
